@@ -226,33 +226,30 @@ class VariantController
     )
     {
         if ($isValid) {
-
-            /**
-             * @var Variant $entity
+            /*
+             * Retrieve saved attributes
              */
-            $variant->setProduct($product);
+            $attributes = $variant->getOptions()->map(
+                function ($option) {
+                    /**
+                     * @var Value $option Value
+                     */
+                    return $option->getAttribute();
+                }
+            );
+
+            $product->setAttributes($attributes);
 
             $this
-                ->get('elcodi.object_manager.product_variant')
+                ->get('elcodi.manager_provider')
+                ->getManagerByEntityNamespace($variant)
                 ->flush($variant);
 
-            /**
-             * @var Value $option
-             */
-            foreach ($variant->getOptions() as $option) {
-                /*
-                 * When adding an option to a Variant it is
-                 * important to check that the parent Product
-                 * has its corresponding Attribute
-                 */
-                if (!$product->getAttributes()->contains($option->getAttribute())) {
-                    $product->addAttribute($option->getAttribute());
-                }
-            }
-
             $this
-                ->get('elcodi.object_manager.product_variant')
+                ->get('elcodi.manager_provider')
+                ->getManagerByEntityNamespace($product)
                 ->flush($product);
+
         }
 
         return $this->redirectRoute("admin_variant_view", [
