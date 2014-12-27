@@ -27,7 +27,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Elcodi\AdminCoreBundle\Controller\Abstracts\AbstractAdminController;
 use Elcodi\AdminCoreBundle\Controller\Interfaces\EnableableControllerInterface;
-use Elcodi\AdminCoreBundle\Controller\Interfaces\NavegableControllerInterface;
 use Elcodi\Component\Core\Entity\Interfaces\EnabledInterface;
 use Elcodi\Component\Coupon\Entity\Interfaces\CouponInterface;
 
@@ -42,26 +41,8 @@ class CouponController
     extends
     AbstractAdminController
     implements
-    NavegableControllerInterface,
     EnableableControllerInterface
 {
-    /**
-     * Nav for coupon group
-     *
-     * @return array Result
-     *
-     * @Route(
-     *      path = "s/nav",
-     *      name = "admin_coupon_nav"
-     * )
-     * @Method({"GET"})
-     * @Template
-     */
-    public function navAction()
-    {
-        return [];
-    }
-
     /**
      * List elements of certain entity type.
      *

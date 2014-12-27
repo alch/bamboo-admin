@@ -27,7 +27,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Elcodi\AdminCoreBundle\Controller\Abstracts\AbstractAdminController;
 use Elcodi\AdminCoreBundle\Controller\Interfaces\EnableableControllerInterface;
-use Elcodi\AdminCoreBundle\Controller\Interfaces\NavegableControllerInterface;
 use Elcodi\Component\Core\Entity\Interfaces\EnabledInterface;
 use Elcodi\Component\Media\Entity\Interfaces\ImageInterface;
 use Elcodi\Component\Product\Entity\Interfaces\ProductInterface;
@@ -43,26 +42,8 @@ class ProductController
     extends
     AbstractAdminController
     implements
-    NavegableControllerInterface,
     EnableableControllerInterface
 {
-    /**
-     * Nav for product group
-     *
-     * @return array Result
-     *
-     * @Route(
-     *      path = "s/nav",
-     *      name = "admin_product_nav"
-     * )
-     * @Method({"GET"})
-     * @Template
-     */
-    public function navAction()
-    {
-        return [];
-    }
-
     /**
      * List elements of certain entity type.
      *

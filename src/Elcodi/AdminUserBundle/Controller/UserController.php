@@ -16,12 +16,9 @@
 
 namespace Elcodi\AdminUserBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Elcodi\AdminCoreBundle\Controller\Abstracts\AbstractAdminController;
-use Elcodi\AdminCoreBundle\Controller\Interfaces\NavegableControllerInterface;
 
 /**
  * Class UserController
@@ -30,22 +27,7 @@ use Elcodi\AdminCoreBundle\Controller\Interfaces\NavegableControllerInterface;
  *      path = "/user",
  * )
  */
-class UserController extends AbstractAdminController implements NavegableControllerInterface
+class UserController extends AbstractAdminController
 {
-    /**
-     * Nav for entity
-     *
-     * @return array Result
-     *
-     * @Route(
-     *      path = "s/nav",
-     *      name = "admin_user_nav"
-     * )
-     * @Method({"GET"})
-     * @Template
-     */
-    public function navAction()
-    {
-        return [];
-    }
+
 }

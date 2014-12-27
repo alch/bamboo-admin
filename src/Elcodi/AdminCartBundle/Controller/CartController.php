@@ -27,7 +27,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Elcodi\AdminCoreBundle\Controller\Abstracts\AbstractAdminController;
 use Elcodi\AdminCoreBundle\Controller\Interfaces\EnableableControllerInterface;
-use Elcodi\AdminCoreBundle\Controller\Interfaces\NavegableControllerInterface;
 use Elcodi\Component\Cart\Entity\Interfaces\CartInterface;
 
 /**
@@ -41,26 +40,8 @@ class CartController
     extends
     AbstractAdminController
     implements
-    NavegableControllerInterface,
     EnableableControllerInterface
 {
-    /**
-     * Nav for cart group
-     *
-     * @return array Result
-     *
-     * @Route(
-     *      path = "s/nav",
-     *      name = "admin_cart_nav"
-     * )
-     * @Method({"GET"})
-     * @Template
-     */
-    public function navAction()
-    {
-        return [];
-    }
-
     /**
      * List elements of certain entity type.
      *

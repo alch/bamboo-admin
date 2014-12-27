@@ -33,7 +33,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Elcodi\AdminCoreBundle\Controller\Abstracts\AbstractAdminController;
 use Elcodi\AdminCoreBundle\Controller\Interfaces\EnableableControllerInterface;
-use Elcodi\AdminCoreBundle\Controller\Interfaces\NavegableControllerInterface;
 use Elcodi\Component\Banner\Entity\Interfaces\BannerInterface;
 use Elcodi\Component\Core\Entity\Interfaces\EnabledInterface;
 
@@ -48,26 +47,8 @@ class BannerController
     extends
     AbstractAdminController
     implements
-    NavegableControllerInterface,
     EnableableControllerInterface
 {
-    /**
-     * Nav for banner group
-     *
-     * @return array Result
-     *
-     * @Route(
-     *      path = "s/nav",
-     *      name = "admin_banner_nav"
-     * )
-     * @Method({"GET"})
-     * @Template
-     */
-    public function navAction()
-    {
-        return [];
-    }
-
     /**
      * List elements of certain entity type.
      *
