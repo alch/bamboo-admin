@@ -1,0 +1,61 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% block content_title %}
+    {{ 'Rule Engine'|trans }}
+{% endblock content_title %}
+
+
+{% block content %}
+
+    <form action="{{ url("admin_rule_engine_submit") }}" method="post" data-tc-modules="rule-engine">
+        <input type="text" name="code" placeholder="code: ORDER15">
+        <input type="text" name="name" placeholder="name">
+        <div class="comparation" data-index="0" >
+
+            <span class="comparated">
+                <select data-index="0" name="comparation[0][comparated][0]">
+                    <option value=""></option>
+                    {% for elementName, elementNamespace in context %}
+                        <option
+                                data-association="true"
+                                data-type="{{ elementNamespace }}"
+                                value="{{ elementName }}">
+                            {{ elementName }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </span>
+
+            <span class="comparator">
+                <select name="comparation[0][comparator]" class="hidden sw-r sw-r-all sw-r-n-collection">
+                    <option class="" value=""></option>
+                    <option disabled="disabled" class="hidden sw-r sw-r-integer sw-r-datetime" value=">">Bigger than</option>
+                    <option disabled="disabled" class="hidden sw-r sw-r-integer sw-r-datetime" value=">=">Bigger or equal than</option>
+                    <option disabled="disabled" class="hidden sw-r sw-r-all" value="==">Equals than</option>
+                    <option disabled="disabled" class="hidden sw-r sw-r-all" value="==">Identical than</option>
+                    <option disabled="disabled" class="hidden sw-r sw-r-all sw-r-n-boolean" value="matches">Matches</option>
+                    <option disabled="disabled" class="hidden sw-r sw-r-all sw-r-n-boolean" value="in">In</option>
+                    <option disabled="disabled" class="hidden sw-r sw-r-all sw-r-n-boolean" value="not in">Not in</option>
+                    <option disabled="disabled" class="hidden sw-r sw-r-all" value="!=">Not equal than</option>
+                    <option disabled="disabled" class="hidden sw-r sw-r-all" value="!==">Not identical than</option>
+                    <option disabled="disabled" class="hidden sw-r sw-r-integer sw-r-datetime" value="<=">Smaller or equal than</option>
+                    <option disabled="disabled" class="hidden sw-r sw-r-integer sw-r-datetime" value="<">Smaller than</option>
+                </select>
+            </span>
+
+            <span class="comparable">
+                <input disabled="disabled" class="hidden sw-r sw-r-all sw-r-n-text sw-r-n-boolean sw-r-n-collection" name="comparation[0][comparable]" />
+                <textarea disabled="disabled" class="hidden sw-r sw-r-text sw-r-n-collection" name="comparation[0][comparable]" ></textarea>
+                <select disabled="disabled" class="hidden sw-r sw-r-boolean sw-r-n-collection" name="comparation[0][comparable]">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select>
+            </span>
+
+        </div>
+
+        <input type="submit">
+    </form>
+
+{% endblock content %}

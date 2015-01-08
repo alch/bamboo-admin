@@ -35,7 +35,7 @@ use Elcodi\Component\Rule\Entity\Interfaces\RuleInterface;
  *      path = "/rule",
  * )
  */
-class RuleEngineController extends AbstractAdminController
+class RuleController extends AbstractAdminController
 {
     /**
      * Rule engine
@@ -43,14 +43,84 @@ class RuleEngineController extends AbstractAdminController
      * @return array Result
      *
      * @Route(
-     *      path = "/engine",
-     *      name = "admin_rule_engine"
+     *      path = "/{id}",
+     *      name = "admin_rule_edit",
+     *      requirements = {
+     *          "id" = "\d+",
+     *      },
+     *      methods = {"GET"}
      * )
-     * @Method({"GET"})
+     * @Route(
+     *      path = "/{id}/update",
+     *      name = "admin_rule_update",
+     *      requirements = {
+     *          "id" = "\d+",
+     *      },
+     *      methods = {"POST"}
+     * )
+     *
+     * @Route(
+     *      path = "/new",
+     *      name = "admin_rule_new",
+     *      methods = {"GET"}
+     * )
+     * @Route(
+     *      path = "/new/update",
+     *      name = "admin_rule_save",
+     *      methods = {"POST"}
+     * )
+     *
+     * @EntityAnnotation(
+     *      class = {
+     *          "factory" = "elcodi.factory.rule",
+     *          "method" = "create",
+     *          "static" = false
+     *      },
+     *      mapping = {
+     *          "id" = "~id~"
+     *      },
+     *      mappingFallback = true,
+     *      name = "rule",
+     *      persist = true
+     * )
+     *
      * @Template
      */
-    public function engineAction()
+    public function editAction(
+
+    )
     {
+
+        $expression->setExpression($builtExpression);
+        $ruleObjectManager = $this->get('elcodi.object_manager.rule');
+        $ruleRepository = $this->get('elcodi.repository.rule');
+        $ruleCode = $data['code'];
+
+        $existingRule = $ruleRepository->findOneBy([
+            'code' => $ruleCode
+        ]);
+
+        if ($existingRule instanceof RuleInterface) {
+
+            $ruleCode .= rand(10000000, 99999999);
+        }
+
+        $rule
+            ->setExpression($expression)
+            ->setCode($ruleCode)
+            ->setName($data['name'])
+            ->setEnabled(true);
+
+        $ruleObjectManager->persist($rule);
+        $ruleObjectManager->flush($rule);
+
+        echo $rule
+            ->getExpression()
+            ->getExpression();
+        die();
+
+
+
         return [
             'context' => [
                 'customer' => 'Elcodi\Component\User\Entity\Interfaces\CustomerInterface',
@@ -84,16 +154,11 @@ class RuleEngineController extends AbstractAdminController
      *      }
      * )
      */
-    public function engineSubmitionAction(
-        Request $request,
-        ExpressionInterface $expression,
-        RuleInterface $rule
-    )
+    public function serializeRule(array $ruleComponents)
     {
-        $data = $request->request->all();
         $builtExpression = '';
 
-        foreach ($data['comparation'] as $comparation) {
+        foreach ($ruleComponents['comparation'] as $comparation) {
 
             foreach ($comparation['comparated'] as $comparated) {
 
@@ -106,33 +171,7 @@ class RuleEngineController extends AbstractAdminController
             $builtExpression .= $comparation['comparable'];
         }
 
-        $expression->setExpression($builtExpression);
-        $ruleObjectManager = $this->get('elcodi.object_manager.rule');
-        $ruleRepository = $this->get('elcodi.repository.rule');
-        $ruleCode = $data['code'];
-
-        $existingRule = $ruleRepository->findOneBy([
-            'code' => $ruleCode
-        ]);
-
-        if ($existingRule instanceof RuleInterface) {
-
-            $ruleCode .= rand(10000000, 99999999);
-        }
-
-        $rule
-            ->setExpression($expression)
-            ->setCode($ruleCode)
-            ->setName($data['name'])
-            ->setEnabled(true);
-
-        $ruleObjectManager->persist($rule);
-        $ruleObjectManager->flush($rule);
-
-        echo $rule
-            ->getExpression()
-            ->getExpression();
-        die();
+        return $builtExpression;
     }
 
     /**
