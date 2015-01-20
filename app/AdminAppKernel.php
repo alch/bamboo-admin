@@ -79,22 +79,22 @@ class AdminAppKernel extends Kernel
             /**
              * Elcodi admin bundles
              */
-            new \Elcodi\AdminCoreBundle\AdminCoreBundle(),
-            new \Elcodi\AdminUserBundle\AdminUserBundle(),
-            new \Elcodi\AdminAttributeBundle\AdminAttributeBundle(),
-            new \Elcodi\AdminBannerBundle\AdminBannerBundle(),
-            new \Elcodi\AdminCartBundle\AdminCartBundle(),
-            new \Elcodi\AdminCartCouponBundle\AdminCartCouponBundle(),
-            new \Elcodi\AdminCouponBundle\AdminCouponBundle(),
-            new \Elcodi\AdminCurrencyBundle\AdminCurrencyBundle(),
-            new \Elcodi\AdminLanguageBundle\AdminLanguageBundle(),
-            new \Elcodi\AdminMediaBundle\AdminMediaBundle(),
-            new \Elcodi\AdminNewsletterBundle\AdminNewsletterBundle(),
-            new \Elcodi\AdminProductBundle\AdminProductBundle(),
-            new \Elcodi\AdminRuleBundle\AdminRuleBundle(),
-            new \Elcodi\AdminConfigurationBundle\AdminConfigurationBundle(),
-            new \Elcodi\AdminPageBundle\AdminPageBundle(),
-            new \Elcodi\AdminTemplateBundle\AdminTemplateBundle(),
+            new \Elcodi\Admin\AdminCoreBundle\AdminCoreBundle(),
+            new \Elcodi\Admin\AdminUserBundle\AdminUserBundle(),
+            new \Elcodi\Admin\AdminAttributeBundle\AdminAttributeBundle(),
+            new \Elcodi\Admin\AdminBannerBundle\AdminBannerBundle(),
+            new \Elcodi\Admin\AdminCartBundle\AdminCartBundle(),
+            new \Elcodi\Admin\AdminCartCouponBundle\AdminCartCouponBundle(),
+            new \Elcodi\Admin\AdminCouponBundle\AdminCouponBundle(),
+            new \Elcodi\Admin\AdminCurrencyBundle\AdminCurrencyBundle(),
+            new \Elcodi\Admin\AdminLanguageBundle\AdminLanguageBundle(),
+            new \Elcodi\Admin\AdminMediaBundle\AdminMediaBundle(),
+            new \Elcodi\Admin\AdminNewsletterBundle\AdminNewsletterBundle(),
+            new \Elcodi\Admin\AdminProductBundle\AdminProductBundle(),
+            new \Elcodi\Admin\AdminRuleBundle\AdminRuleBundle(),
+            new \Elcodi\Admin\AdminConfigurationBundle\AdminConfigurationBundle(),
+            new \Elcodi\Admin\AdminPageBundle\AdminPageBundle(),
+            new \Elcodi\Admin\AdminTemplateBundle\AdminTemplateBundle(),
 
             /**
              * Elcodi Templates
